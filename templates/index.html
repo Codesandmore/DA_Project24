@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>Spam Detection</title>
+</head>
+<body>
+    <h1>Spam Detection</h1>
+    <form action="/predict" method="POST">
+        <textarea name="email_text" placeholder="Enter email text here..."></textarea>
+        <button type="submit">Predict</button>
+    </form>
+    {% if prediction_nb %}
+        <h3>Naive Bayes Prediction: {{ prediction_nb }}</h3>
+    {% endif %}
+    {% if prediction_dt %}
+        <h3>Decision Tree Prediction: {{ prediction_dt }}</h3>
+    {% endif %}
+    <img src="{{ url_for('static', filename='accuracy_comparison.png') }}" alt="Accuracy Comparison">
+</body>
+</html>
